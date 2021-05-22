@@ -1,4 +1,4 @@
-
+# Edit this file to match your plotters
 - Plotter1:
     Tmp: "/media/me/Plotter1/ChiaTmp/"
     Dst: "/media/me/Chia_301/ChiaPlots"
@@ -8,15 +8,15 @@
     Threads: 2
 
 - Plotter2:
-    Tmp: "/media/me/Plotter1/ChiaTmp/"
-    Dst: "/media/me/Chia_301/ChiaPlots"
+    Tmp: "/media/me/Plotter2/ChiaTmp/"
+    Dst: "/media/me/Chia_302/ChiaPlots"
     Type: 32
     Queue: 100
     Memory: 3389
     Threads: 2
 
 - Plotter5:
-    Tmp: "/media/me/Plotter1/ChiaTmp/"
+    Tmp: "/media/me/Plotter5/ChiaTmp/"
     Dst: "/media/me/Chia_301/ChiaPlots"
     Type: 32
     Queue: 100

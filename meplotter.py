@@ -1,9 +1,13 @@
 import os
+import sys
 import yaml
 import glob
-from pathlib import Path
-import subprocess
+import time
 import argparse
+import subprocess
+
+from pathlib import Path
+from durations import Duration
 
 
 parser = argparse.ArgumentParser(description='Manage your Plotting')
@@ -25,14 +29,17 @@ settings_file = "plotters.yaml"
 if args.settings:
     settings_file = args.settings
 
+if args.delay:
+    delay = Duration(args.delay)
+    print("Waiting for " + str(delay))
+    time.sleep(delay.to_seconds())
+
 # Read settings file
 with open(settings_file, 'r') as stream:
     print("Loaded settings file: " + settings_file)
     plotting_settings = yaml.safe_load(stream)
-    
 
     plotter_settings = plotting_settings[0][args.name]
-    print(plotter_settings)
 
     tmp_folder = plotter_settings['Tmp']
     dst_folder = plotter_settings['Dst']
@@ -70,11 +77,19 @@ files = glob.glob(os.path.join(tmp_folder, "*.tmp"))
 for f in files:
     os.remove(f)
 
-subprocess.run([os.path.join(chia_folder, 'venv/bin/chia'), "plots", "create", 
-                "-k", str(k_type), 
-                "-n", str(queue_length), 
-                "-t", tmp_folder, 
-                "-d", dst_folder, 
-                "-b", str(memory_size),
-                "-u 128",
-                "-r", str(number_threads)])
+# command = '/bin/bash -c ". ' + os.path.join(chia_folder, "activate") + " && " + os.path.join(chia_folder, 'venv/bin/chia') + '"'
+
+# process = subprocess.Popen(command, shell=True)
+
+command = ". " + os.path.join(chia_folder, 'activate') + " && " + \
+            os.path.join(chia_folder, 'venv/bin/chia') + \
+            " plots create" + \
+            " -k " + str(k_type) + \
+            " -n " + str(queue_length) + \
+            " -t " + tmp_folder + \
+            " -d " + dst_folder + \
+            " -b " + str(memory_size) + \
+            " -u 128" + \
+            " -r " + str(number_threads)
+
+subprocess.run([command], shell=True, stdout=sys.stdout)
