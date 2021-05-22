@@ -15,6 +15,6 @@ for sync_name, sync in sync_settings.items():
     host = sync["Host"]
     username = sync["Username"]
 
-    command = "rsync -av --progress " + src + " " + username + "@" + host + ":" + dst
+    command = "rsync -av --progress --remove-source-files " + src + " " + username + "@" + host + ":" + dst
     print("Running: " + command)
     subprocess.call(command, shell=True)
