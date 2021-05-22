@@ -9,6 +9,15 @@ import subprocess
 from pathlib import Path
 from durations import Duration
 
+'''
+Usage: python3 meplotter.py Plotter1 --delay 30m
+
+If you want to delete temp folder
+python3 meplotter.py Plotter1 --cleanup 1 --delay 30m
+
+'''
+
+
 parser = argparse.ArgumentParser(description='Manage your Plotting')
 parser.add_argument('name', help='The name of the plotter as specified in the settings')
 
@@ -30,17 +39,12 @@ print("Welcome to the MePlotter")
 if args.settings:
     settings_file = args.settings
 
-if args.delay:
-    delay = Duration(args.delay)
-    print("Waiting for " + str(delay))
-    time.sleep(delay.to_seconds())
-
 # Read settings file
 with open(settings_file, 'r') as stream:
     print("Loaded settings file: " + settings_file)
     plotting_settings = yaml.safe_load(stream)
 
-    plotter_settings = plotting_settings[0][args.name]
+    plotter_settings = plotting_settings[args.name]
 
     tmp_folder = plotter_settings['Tmp']
     dst_folder = plotter_settings['Dst']
@@ -57,6 +61,8 @@ with open(settings_file, 'r') as stream:
     if 'Threads' in plotter_settings:
         number_threads = plotter_settings['Threads']
 
+    print("Executing " + args.name)
+
 if not tmp_folder or not dst_folder:
     print("Your destination or temp folders are not set")
     exit()
@@ -69,13 +75,18 @@ if args.cleanup:
 
 try:
     os.makedirs(tmp_folder)
-except FileExistsError:
+except:
     pass
 
 try:
     os.makedirs(dst_folder)
-except FileExistsError:
+except:
     pass
+
+if args.delay:
+    delay = Duration(args.delay)
+    print("Waiting for " + str(delay))
+    time.sleep(delay.to_seconds())
 
 command = ". " + os.path.join(chia_folder, 'activate') + " && " + \
             os.path.join(chia_folder, 'venv/bin/chia') + \
