@@ -9,7 +9,6 @@ import subprocess
 from pathlib import Path
 from durations import Duration
 
-
 parser = argparse.ArgumentParser(description='Manage your Plotting')
 parser.add_argument('name', help='The name of the plotter as specified in the settings')
 
@@ -76,10 +75,6 @@ print("Welcome to the MePlotter")
 files = glob.glob(os.path.join(tmp_folder, "*.tmp"))
 for f in files:
     os.remove(f)
-
-# command = '/bin/bash -c ". ' + os.path.join(chia_folder, "activate") + " && " + os.path.join(chia_folder, 'venv/bin/chia') + '"'
-
-# process = subprocess.Popen(command, shell=True)
 
 command = ". " + os.path.join(chia_folder, 'activate') + " && " + \
             os.path.join(chia_folder, 'venv/bin/chia') + \

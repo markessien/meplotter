@@ -1,7 +1,13 @@
 # Edit this file to match your syncers. The files here will be copied
-# Via rsync to the target server
+# Via rsync to the target server.
 Sync1:
   Src: "/media/me/Chia_301/ChiaPlots"
+  Dst: "/media/mark/Chia_09/ChiaPlots09"
+  Host: "192.168.0.155"
+  Username: "mark"
+
+Sync2:
+  Src: "/media/me/Chia_52/ChiaPlots52"
   Dst: "/media/mark/Chia_09/ChiaPlots09"
   Host: "192.168.0.155"
   Username: "mark"
