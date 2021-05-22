@@ -25,6 +25,8 @@ memory_size = 3389
 number_threads = 2
 settings_file = "plotters.yaml"
 
+print("Welcome to the MePlotter")
+
 if args.settings:
     settings_file = args.settings
 
@@ -60,21 +62,20 @@ if not tmp_folder or not dst_folder:
     exit()
 
 if args.cleanup:
-    try:
-        os.makedirs(tmp_folder)
-    except FileExistsError:
-        pass
+    print("Cleaning up the folders")
+    files = glob.glob(os.path.join(tmp_folder, "*.tmp"))
+    for f in files:
+        os.remove(f)
 
-    try:
-        os.makedirs(dst_folder)
-    except FileExistsError:
-        pass
+try:
+    os.makedirs(tmp_folder)
+except FileExistsError:
+    pass
 
-print("Welcome to the MePlotter")
-
-files = glob.glob(os.path.join(tmp_folder, "*.tmp"))
-for f in files:
-    os.remove(f)
+try:
+    os.makedirs(dst_folder)
+except FileExistsError:
+    pass
 
 command = ". " + os.path.join(chia_folder, 'activate') + " && " + \
             os.path.join(chia_folder, 'venv/bin/chia') + \
