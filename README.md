@@ -19,7 +19,16 @@ Afterwards, you can run a plotter with this command:
 
 python3 meplotter.py Plotter1 --delay 60m
 
+You can also launch multiple parallel at once.
+
+python3 meplotter.py Plotter1 Plotter2 Plotter2 Plotter3 --delay 30m
+
+In this case, each plotting will launch in parallel (in a new tab). There
+will be a 30 minute delay between each process.
+
 For now, the script will only run on Ubuntu.
+
+
 
 ## Sync
 The sync.py script can be used to move your completed files to another server.
