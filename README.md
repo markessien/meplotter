@@ -17,11 +17,11 @@ plotters. Name each plotter differently.
 
 Afterwards, you can run a plotter with this command:
 
-python3 meplotter.py Plotter1 --delay 60m
+- python3 meplotter.py Plotter1 --delay 60m
 
 You can also launch multiple parallel at once.
 
-python3 meplotter.py Plotter1 Plotter2 Plotter2 Plotter3 --delay 30m
+- python3 meplotter.py Plotter1 Plotter2 Plotter2 Plotter3 --delay 30m
 
 In this case, each plotting will launch in parallel (in a new tab). There
 will be a 30 minute delay between each process.
