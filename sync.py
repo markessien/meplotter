@@ -10,9 +10,12 @@ while True:
 
     print("Checking for new files...\n")
 
+    start_time = time.time()
+
     with open(settings_file, 'r') as stream:
         print("Loaded settings file: " + settings_file)
         sync_settings = yaml.safe_load(stream)
+
 
     for sync_name, sync in sync_settings.items():
         src = os.path.join(sync["Src"], "*.plot")
@@ -24,7 +27,9 @@ while True:
         print("Running: " + command)
         subprocess.call(command, shell=True)
     
-    time.sleep(180)
+    exec_time = time.time() - start_time
+    if exec_time < 180:
+        time.sleep(180)
 
 
     
