@@ -7,9 +7,9 @@ It does not try to actively manage the process. Each window is independent.
 
 
 ## Installation
--- Install Python 3
--- Install Pip
--- Do pip install -r requirements.txt
+- Install Python 3
+- Install Pip
+- Do pip install -r requirements.txt
 
 ## Running it
 To use it, go to the plotters.yaml file and configure the folder of your
