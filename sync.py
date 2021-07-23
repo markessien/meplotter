@@ -40,8 +40,8 @@ while True:
             else:
                 command = "rsync -av --progress --remove-source-files " + src + " " + dst
 
-        print("Running: " + command)
-        subprocess.call(command, shell=True)
+                print("Running: " + command)
+                subprocess.call(command, shell=True)
     
     exec_time = time.time() - start_time
     if exec_time < 180:
