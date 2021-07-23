@@ -23,7 +23,7 @@ while True:
         host = sync["Host"]
         username = sync["Username"]
 
-        command = "rsync -av --progress --remove-source-files " + src + " " + username + "@" + host + ":" + dst
+        command = "rsync -av --progress --remove-source-files " + src + " " + dst
         print("Running: " + command)
         subprocess.call(command, shell=True)
     

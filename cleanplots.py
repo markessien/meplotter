@@ -1,6 +1,6 @@
 
 
-debug_file = "/home/me/.chia/mainnet/log/debug.log"
+debug_file = "/home/mark/.chia/mainnet/log/debug.log"
 file = open(debug_file, "r") 
 
 
@@ -27,10 +27,11 @@ for line in file:
         time_required = float(line[time_pos:time_pos+4])
 
 
-    pos = line.find("WARNING  Plot ") 
-    if pos > -1:
+    pos1 = line.find("WARNING  Plot ") 
+    pos2 = line.find("has a farmer public key that is not")
+    if pos1 > -1 and pos2 > -1:
         err = 3
-        file_name = get_file_name(line[pos+14:])
+        file_name = get_file_name(line[pos1+14:])
 
     if err == 1:
         print("File not found on " + file_name)
